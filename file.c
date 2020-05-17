@@ -16,3 +16,30 @@
 
 #include <stdio.h>
 #include "file.h"
+
+
+
+
+//返回目前图书库（借阅库）数量。如果当前无Info文件存在，会自动新建Info文件并设定数量为0，返回0。
+int FileCheckInfo(void)
+{
+    int db_amount;
+    FILE* fp_info = fopen("Info", "r");
+
+    if (fp_info == NULL) //info文件不存在
+    {
+        fp_info = fopen("info", "w");
+        fprintf(fp_info, "0");
+
+        fclose(fp_info);
+
+        return 0;
+    }
+
+    //info文件存在
+    fscanf(fp_info, "%d", &db_amount);
+
+    fclose(fp_info);
+
+    return db_amount;
+}

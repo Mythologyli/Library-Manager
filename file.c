@@ -71,3 +71,26 @@ int FileUpdateInfo(void)
 
     return db_amount;
 }
+
+
+
+
+//检测用户库文件状态。若存在，返回1；若不存在，自动新建用户库文件，返回0
+int FileCheckUser(void)
+{
+    FILE* fp_user = fopen("user", "rb");
+
+    if (fp_user == NULL) //文件不存在
+    {
+        fp_user = fopen("user", "wb");
+
+        fclose(fp_user);
+
+        return 0;
+    }
+
+    //文件存在
+    fclose(fp_user);
+
+    return 1;
+}

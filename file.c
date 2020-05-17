@@ -94,3 +94,95 @@ int FileCheckUser(void)
 
     return 1;
 }
+
+
+
+
+//向文件中写入图书库链表,成功则返回1。若不存在，返回0
+int FileWriteBook(struct BookNode* node, int db_num)
+{
+    int node_size = sizeof(struct BookNode);
+
+    char book_filename[MAX_FILE_NAME];
+    sprintf(book_filename, "book%d", db_num);
+
+    FILE* fp_book = fopen(book_filename, "rb");
+
+    if (fp_book == NULL) //文件不存在
+        return 0;
+
+    //文件存在
+    fp_book = fopen(book_filename, "wb");
+
+    struct BookNode* p = node;
+
+    while (p)
+    {
+        fwrite(p, node_size, 1, fp_book);
+        p = p->next;
+    }
+
+    fclose(fp_book);
+
+    return 1;
+}
+
+
+
+
+//向文件中写入用户库链表,成功则返回1。若不存在，返回0
+int FileWriteUser(struct UserNode* node)
+{
+    int node_size = sizeof(struct UserNode);
+    FILE* fp_user = fopen("user", "rb");
+
+    if (fp_user == NULL) //文件不存在
+        return 0;
+
+    //文件存在
+    fp_user = fopen("user", "wb");
+
+    struct UserNode* p = node;
+
+    while (p)
+    {
+        fwrite(p, node_size, 1, fp_user);
+        p = p->next;
+    }
+
+    fclose(fp_user);
+
+    return 1;
+}
+
+
+
+
+//向文件中写入借阅库链表,成功则返回1。若不存在，返回0
+int FileWriteBorrow(struct BorrowNode* node, int db_num)
+{
+    int node_size = sizeof(struct BorrowNode);
+
+    char borrow_filename[MAX_FILE_NAME];
+    sprintf(borrow_filename, "book%d", db_num);
+
+    FILE* fp_borrow = fopen(borrow_filename, "rb");
+
+    if (fp_borrow == NULL) //文件不存在
+        return 0;
+
+    //文件存在
+    fp_borrow = fopen(borrow_filename, "wb");
+
+    struct BorrowNode* p = node;
+
+    while (p)
+    {
+        fwrite(p, node_size, 1, fp_borrow);
+        p = p->next;
+    }
+
+    fclose(fp_borrow);
+
+    return 1;
+}

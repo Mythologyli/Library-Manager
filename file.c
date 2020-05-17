@@ -227,7 +227,7 @@ struct BookNode* FileReadBook(int db_num)
 
 
 //从文件中读出用户库链表。若不存在，返回NULL
-struct UserNode* FileReadUser(int db_num)
+struct UserNode* FileReadUser(void)
 {
     int node_size = sizeof(struct UserNode);
 

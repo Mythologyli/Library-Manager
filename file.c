@@ -43,3 +43,31 @@ int FileCheckInfo(void)
 
     return db_amount;
 }
+
+
+
+
+//将图书库（借阅库）数量增加1。并自动新建对应的图书库（借阅库）文件。返回当前库数量
+int FileUpdateInfo(void)
+{
+    int db_amount = FileCheckInfo();
+    int db_num = ++db_amount;
+
+    char book_filename[MAX_FILE_NAME];
+    char borrow_filename[MAX_FILE_NAME];
+
+    sprintf(book_filename, "book%d", db_num);
+    sprintf(borrow_filename, "borrow%d", db_num);
+
+    FILE* fp_info = fopen("info", "w"); //打开info文件
+    FILE* fp_book = fopen(book_filename, "wb"); //新建图书库文件
+    FILE* fp_borrow = fopen(borrow_filename, "wb");; //新建借阅库文件
+
+    fprintf(fp_info, "%d", db_amount); //将新的库数量写入info文件
+
+    fclose(fp_info);
+    fclose(fp_book);
+    fclose(fp_borrow);
+
+    return db_amount;
+}

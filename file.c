@@ -186,3 +186,108 @@ int FileWriteBorrow(struct BorrowNode* node, int db_num)
 
     return 1;
 }
+
+
+
+
+//从文件中读出图书库链表。若不存在，返回NULL
+struct BookNode* FileReadBook(int db_num)
+{
+    int node_size = sizeof(struct BookNode);
+
+    char book_filename[MAX_FILE_NAME];
+    sprintf(book_filename, "book%d", db_num);
+
+    FILE* fp_book = fopen(book_filename, "rb");
+
+    if (fp_book == NULL) //文件不存在
+        return NULL;
+
+    //文件存在
+    struct BookNode* head = NULL;
+    struct BookNode* p = NULL;
+
+    head = (struct BookNode*)malloc(node_size);
+    fread(head, node_size, 1, fp_book); //读出头结点
+
+    p = head;
+    while (p->next) //依次读出并链接之后的结点
+    {
+        p->next = (struct BookNode*)malloc(node_size);
+        fread(p->next, node_size, 1, fp_book);
+        p = p->next;
+    }
+
+    fclose(fp_book);
+
+    return head;
+}
+
+
+
+
+//从文件中读出用户库链表。若不存在，返回NULL
+struct UserNode* FileReadUser(int db_num)
+{
+    int node_size = sizeof(struct UserNode);
+
+    FILE* fp_user = fopen("user", "rb");
+
+    if (fp_user == NULL) //文件不存在
+        return NULL;
+
+    //文件存在
+    struct UserNode* head = NULL;
+    struct UserNode* p = NULL;
+
+    head = (struct UserNode*)malloc(node_size);
+    fread(head, node_size, 1, fp_user); //读出头结点
+
+    p = head;
+    while (p->next) //依次读出并链接之后的结点
+    {
+        p->next = (struct UserNode*)malloc(node_size);
+        fread(p->next, node_size, 1, fp_user);
+        p = p->next;
+    }
+
+    fclose(fp_user);
+
+    return head;
+}
+
+
+
+
+//从文件中读出借阅库链表。若不存在，返回NULL
+struct BorrowNode* FileReadBorrow(int db_num)
+{
+    int node_size = sizeof(struct BorrowNode);
+
+    char borrow_filename[MAX_FILE_NAME];
+    sprintf(borrow_filename, "borrow%d", db_num);
+
+    FILE* fp_borrow = fopen(borrow_filename, "rb");
+
+    if (fp_borrow == NULL) //文件不存在
+        return NULL;
+
+    //文件存在
+    struct BorrowNode* head = NULL;
+    struct BorrowNode* p = NULL;
+
+    head = (struct BorrowNode*)malloc(node_size);
+    fread(head, node_size, 1, fp_borrow); //读出头结点
+
+    p = head;
+    while (p->next) //依次读出并链接之后的结点
+    {
+        p->next = (struct BorrowNode*)malloc(node_size);
+        fread(p->next, node_size, 1, fp_borrow);
+        p = p->next;
+    }
+
+    fclose(fp_borrow);
+
+    return head;
+}

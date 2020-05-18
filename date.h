@@ -23,7 +23,7 @@ struct Date
 
 
 
-//新建日期
+//新建日期;若日期不合法，返回的结构数据均为0
 struct Date AddDate(int year, int month, int day);
 
 

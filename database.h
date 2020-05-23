@@ -52,6 +52,8 @@
 #define SEARCH_EXIST 0
 #define SEARCH_ALL 1
 
+//字符串最大长度
+#define MAX_LEN 15
 
 
 
@@ -60,10 +62,10 @@ struct BookNode
 {
     int book_id; //从1开始递增，具有唯一性
 
-    string book_name; //书名
-    string book_keyword[5]; //关键词
-    string book_writer[3]; //作者
-    string book_publish; //出版社
+	char book_name[MAX_LEN];//书名
+	char book_keyword[5][MAX_LEN];//关键词
+	char book_writer[3][MAX_LEN];//作者
+	char book_publish[MAX_LEN];//出版社
     struct Date book_date; //出版日期
 
     int book_status; //图书状态（是否删除）
@@ -76,9 +78,9 @@ struct UserNode
 {
     int user_id; //从1开始递增，具有唯一性
 
-    string user_name; //用户名
+	char user_name[MAX_LEN]; //用户名
     int user_sex; //性别
-    string user_work; //工作单位
+	char user_work[MAX_LEN]; //工作单位
 
     int user_status; //用户状态（是否删除）
 
@@ -95,7 +97,7 @@ struct BorrowNode
     struct Date borrow_date; //借阅日期
     struct Date return_date; //应还日期
     
-    int borrow_status; //借阅状态（是否删除）
+    int borrow_status; //借阅状态（是否删除，删除即表示已归还）
 
     struct BorrowNode *next; 
 };
@@ -126,13 +128,13 @@ int DeleteNode(void* Node, int node_name, int id);
 //链表整型内容的读取
 int ReadNodeInt(void* Node, int node_name, int id, int int_name);
 
-/*链表单个字符串内容的读取*/
-string ReadNodeString(void* Node, int node_name, int id, int string_name);
+/* 链表单个字符串内容的读取 */
+char* ReadNodeString(void* Node, int node_name, int id, int string_name);
 
-/*链表字符串数组的读取*/
-string* ReadNodeStringArray(void* Node, int node_name, int id, int string_array_name);
+/* 链表字符串数组的读取 */
+char** ReadNodeStringArray(void* Node, int node_name, int id, int string_array_name);
 
-/*链表日期的读取*/
+/* 链表日期的读取 */
 struct Date ReadNodeDate(void* Node, int node_name, int id, int date_name);
 
 
@@ -141,27 +143,28 @@ struct Date ReadNodeDate(void* Node, int node_name, int id, int date_name);
 //链表整型内容的更改
 int ChangeNodeInt(void* Node, int node_name, int id, int int_name, int int_value);
 
-/*链表单个字符串内容的更改*/
-int ChangeNodeString(void* Node, int node_name, int id, int string_name, string string_value);
+/* 链表单个字符串内容的更改 */
+int ChangeNodeString(void* Node, int node_name, int id, int string_name, char* string_value);
 
-/*链表字符串数组的更改*/
-int ChangeNodeStringArray(void* Node, int node_name, int id, int string_array_name, string* string_array_value);
+/* 链表字符串数组的更改 */
+int ChangeNodeStringArray(void* Node, int node_name, int id, int string_array_name, char** string_array_value);
 
-/*链表日期的更改*/
+/* 链表日期的更改 */
 int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date date_value);
 
 
 
 
+
 //链表整型内容的搜索
-//搜索链表并返回一个整型数组。例如，搜索得出id为1,3,7的符合条件，则返回数组{1,3,7,0}
+//返回一个存放搜索结果的整型数组，以0作为结束标志，例如，id为1,3,7的结点符合条件，则返回{1，3，7，0}
 int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int search_mode);
 
-/*链表单个字符串内容的搜索*/
-int* SearchNodeString(void* Node, int node_name, int string_name, string string_value, int search_mode);
+/* 链表单个字符串内容的搜索 */
+int* SearchNodeString(void* Node, int node_name, int string_name, char* string_value, int search_mode);
 
-/*链表字符串数组的搜索*/
-int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, string* string_array_value, int search_mode);
+/* 链表字符串数组的搜索*/
+int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, char** string_array_value, int search_mode);
 
-/*链表日期的搜索*/
+/* 链表日期的搜索 */
 int* SearchNodeDate(void* Node, int node_name, int date_name, struct Date date_value, int search_mode);

@@ -116,9 +116,9 @@ int CheckBorrowAmount(struct BorrowNode* node, int check_mode);
 
 
 //新增一个节点
-//int AddBookNode(...);
-//int AddUserNode(...);
-//int AddBorrowNode(...);
+struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data);
+//
+//
 
 
 

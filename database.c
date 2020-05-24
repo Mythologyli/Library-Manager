@@ -75,6 +75,58 @@ int CheckBorrowAmount(struct BorrowNode* node, int check_mode)
 }
 
 
+//新增图书节点
+struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data)
+{
+	struct BookNode* head = node;
+	struct BookNode* p = head;
+	struct BookNode* q = head;
+
+	int q_id = 1;
+
+	if (head != NULL)
+	{
+		while (p->next != NULL)
+		{
+			q_id++;
+			p = p->next;
+		}
+
+		q = (struct BookNode*)malloc(sizeof(struct BookNode));
+
+		p->next = q;
+	}
+	else
+	{
+		q = (struct BookNode*)malloc(sizeof(struct BookNode));
+	}
+
+	//写入
+	q->book_id = data.book_id;
+
+	strcpy(q->book_name , data.book_name);
+	
+	for (int i = 0; i < 5; i++)
+		strcpy(q->book_keyword[i] , data.book_keyword[i]);
+
+	for (int i = 0; i < 3; i++)
+		strcpy(q->book_writer[i], data.book_writer[i]);
+
+	strcpy(q->book_publish, data.book_publish);
+
+	q->book_date = data.book_date;
+
+	q->book_status = EXIST;
+	
+	q->next = NULL;
+
+	if (head == NULL)
+		head = q;
+
+	return head;
+}
+
+
 //链表整型内容的读取 
 int ReadNodeInt(void* Node, int node_name, int id, int int_name)
 {

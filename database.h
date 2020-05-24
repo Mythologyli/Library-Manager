@@ -123,7 +123,7 @@ struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data
 
 
 
-//删除一个节点
+//删除一个节点，成功则返回1，若不存在该id则返回0
 int DeleteNode(void* Node, int node_name, int id);
 
 

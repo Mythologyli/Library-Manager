@@ -225,6 +225,68 @@ struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data
 
 
 
+//删除一个节点，成功则返回1，若不存在该id则返回0
+int DeleteNode(void* Node, int node_name, int id)
+{
+	switch (node_name)
+	{
+	case BOOK://删除图书链表中的结点
+	{
+		struct  BookNode* p = (struct BookNode*)Node;
+		int i = 1;
+
+		if (id > CheckBookAmount(p, SEARCH_ALL))//若不存在该id
+			return 0;
+
+		for (i = 1; i < id; i++)
+		{
+			p = p->next;
+		}
+
+		p->book_status = DELETE;
+	}
+	break;
+
+	case USER://删除用户链表中的结点
+	{
+		struct  UserNode* p = (struct UserNode*)Node;
+		int i;
+
+		if (id > CheckUserAmount(p, SEARCH_ALL))//若不存在该id
+			return 0;
+
+		for (i = 1; i < id; i++)
+		{
+			p = p->next;
+		}
+
+		p->user_status = DELETE;
+	}
+	break;
+
+	case BORROW://删除借阅链表中的结点
+	{
+		struct  BorrowNode* p = (struct BorrowNode*)Node;
+		int i;
+
+		if (id > CheckBorrowAmount(p, SEARCH_ALL))//若不存在该id
+			return 0;
+
+		for (i = 1; i < id; i++)
+		{
+			p = p->next;
+		}
+
+		p->borrow_status = DELETE;
+	}
+	break;
+	}
+
+	return 1;
+}
+
+
+
 //链表整型内容的读取 
 int ReadNodeInt(void* Node, int node_name, int id, int int_name)
 {

@@ -166,7 +166,7 @@ int FileWriteBorrow(struct BorrowNode* node, int db_num)
     int node_size = sizeof(struct BorrowNode);
 
     char borrow_filename[MAX_FILE_NAME];
-    sprintf(borrow_filename, "book%d", db_num);
+    sprintf(borrow_filename, "borrow%d", db_num);
 
     FILE* fp_borrow = fopen(borrow_filename, "wb");
 

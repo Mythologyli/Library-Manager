@@ -157,7 +157,7 @@ struct UserNode* AddUserNode(struct UserNode* node, struct UserNode data)
 
 	strcpy(q->user_work, data.user_work);
 
-	q->user_status = data.user_status;
+	q->user_status = EXIST;
 
 	q->next = NULL;
 
@@ -199,7 +199,7 @@ struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data
 	q->borrow_date = data.borrow_date;
 	q->return_date = data.return_date;
 
-	q->borrow_status = data.borrow_status;
+	q->borrow_status = EXIST;
 
 	q->next = NULL;
 

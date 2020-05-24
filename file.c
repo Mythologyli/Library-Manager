@@ -25,7 +25,7 @@
 int FileCheckInfo(void)
 {
     int db_amount;
-    FILE* fp_info = fopen("Info", "r");
+    FILE* fp_info = fopen("info", "r");
 
     if (fp_info == NULL) //info文件不存在
     {

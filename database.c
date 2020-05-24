@@ -388,6 +388,8 @@ int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date
 		}
 	}
 	}
+
+	return id;
 }
 
 

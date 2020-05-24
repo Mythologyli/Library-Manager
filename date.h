@@ -10,6 +10,8 @@
 */
 
 
+#ifndef __DATE_H__
+#define __DATE_H__
 
 
 //日期结构
@@ -31,3 +33,8 @@ struct Date AddDate(int year, int month, int day);
 
 //计算天数间隔
 int DateInterval(struct Date start_date, struct Date end_date);
+
+
+
+
+#endif

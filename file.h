@@ -13,6 +13,8 @@
 */
 
 
+#ifndef __FILE_H__
+#define __FILE_H__
 
 
 #include "database.h" //提供各种库结构的定义
@@ -57,3 +59,8 @@ int FileWriteBorrow(struct BorrowNode* node, int db_num);
 struct BookNode* FileReadBook(int db_num);
 struct UserNode* FileReadUser(void);
 struct BorrowNode* FileReadBorrow(int db_num);
+
+
+
+
+#endif

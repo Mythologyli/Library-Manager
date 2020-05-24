@@ -11,6 +11,8 @@
 */
 
 
+#ifndef __DATABASE_H__
+#define __DATABASE_H__
 
 
 #include "date.h" //提供日期结构的定义
@@ -168,3 +170,8 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 
 /* 链表日期的搜索 */
 int* SearchNodeDate(void* Node, int node_name, int date_name, struct Date date_value, int search_mode);
+
+
+
+
+#endif

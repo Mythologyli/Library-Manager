@@ -47,7 +47,7 @@ int FileCheckUser(void);
 
 
 
-//向文件中写入链表,成功则返回1。若不存在，返回0
+//向文件中写入链表,成功则返回1。若要写入的链表为空，返回0
 int FileWriteBook(struct BookNode* node, int db_num);
 int FileWriteUser(struct UserNode* node);
 int FileWriteBorrow(struct BorrowNode* node, int db_num);

@@ -99,21 +99,19 @@ int FileCheckUser(void)
 
 
 
-//向文件中写入图书库链表,成功则返回1。若不存在，返回0
+//向文件中写入图书库链表,成功则返回1。若要写入的链表为空，返回0
 int FileWriteBook(struct BookNode* node, int db_num)
 {
+    if (node == NULL) //写入的链表为空
+        return 0;
+    
+    //写入的链表不为空
     int node_size = sizeof(struct BookNode);
 
     char book_filename[MAX_FILE_NAME];
     sprintf(book_filename, "book%d", db_num);
 
-    FILE* fp_book = fopen(book_filename, "rb");
-
-    if (fp_book == NULL) //文件不存在
-        return 0;
-
-    //文件存在
-    fp_book = fopen(book_filename, "wb");
+    FILE* fp_book = fopen(book_filename, "wb");
 
     struct BookNode* p = node;
 
@@ -131,17 +129,16 @@ int FileWriteBook(struct BookNode* node, int db_num)
 
 
 
-//向文件中写入用户库链表,成功则返回1。若不存在，返回0
+//向文件中写入用户库链表,成功则返回1。若要写入的链表为空，返回0
 int FileWriteUser(struct UserNode* node)
 {
-    int node_size = sizeof(struct UserNode);
-    FILE* fp_user = fopen("user", "rb");
-
-    if (fp_user == NULL) //文件不存在
+    if (node == NULL) //写入的链表为空
         return 0;
+    
+    //写入的链表不为空
+    int node_size = sizeof(struct UserNode);
 
-    //文件存在
-    fp_user = fopen("user", "wb");
+    FILE* fp_user = fopen("user", "wb");
 
     struct UserNode* p = node;
 
@@ -159,21 +156,19 @@ int FileWriteUser(struct UserNode* node)
 
 
 
-//向文件中写入借阅库链表,成功则返回1。若不存在，返回0
+//向文件中写入借阅库链表,成功则返回1。若要写入的链表为空，返回0
 int FileWriteBorrow(struct BorrowNode* node, int db_num)
 {
+    if (node == NULL) //写入的链表为空
+        return 0;
+    
+    //写入的链表不为空
     int node_size = sizeof(struct BorrowNode);
 
     char borrow_filename[MAX_FILE_NAME];
     sprintf(borrow_filename, "book%d", db_num);
 
-    FILE* fp_borrow = fopen(borrow_filename, "rb");
-
-    if (fp_borrow == NULL) //文件不存在
-        return 0;
-
-    //文件存在
-    fp_borrow = fopen(borrow_filename, "wb");
+    FILE* fp_borrow = fopen(borrow_filename, "wb");
 
     struct BorrowNode* p = node;
 

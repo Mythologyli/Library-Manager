@@ -191,7 +191,7 @@ int FileWriteBorrow(struct BorrowNode* node, int db_num)
 
 
 
-//从文件中读出图书库链表。若不存在，返回NULL
+//从文件中读出图书库链表。若文件为空，返回NULL
 struct BookNode* FileReadBook(int db_num)
 {
     int node_size = sizeof(struct BookNode);
@@ -201,10 +201,14 @@ struct BookNode* FileReadBook(int db_num)
 
     FILE* fp_book = fopen(book_filename, "rb");
 
-    if (fp_book == NULL) //文件不存在
+    fseek(fp_book, 0L, SEEK_END);
+    if (ftell(fp_book) == 0) //文件为空
+    {
         return NULL;
+    }
 
-    //文件存在
+    //文件不为空
+    fseek(fp_book, 0L, SEEK_SET);
     struct BookNode* head = NULL;
     struct BookNode* p = NULL;
 
@@ -227,17 +231,21 @@ struct BookNode* FileReadBook(int db_num)
 
 
 
-//从文件中读出用户库链表。若不存在，返回NULL
+//从文件中读出用户库链表。若文件为空，返回NULL
 struct UserNode* FileReadUser(void)
 {
     int node_size = sizeof(struct UserNode);
 
     FILE* fp_user = fopen("user", "rb");
 
-    if (fp_user == NULL) //文件不存在
+    fseek(fp_user, 0L, SEEK_END);
+    if (ftell(fp_user) == 0) //文件为空
+    {
         return NULL;
+    }
 
-    //文件存在
+    //文件不为空
+    fseek(fp_user, 0L, SEEK_SET);
     struct UserNode* head = NULL;
     struct UserNode* p = NULL;
 
@@ -260,7 +268,7 @@ struct UserNode* FileReadUser(void)
 
 
 
-//从文件中读出借阅库链表。若不存在，返回NULL
+//从文件中读出借阅库链表。若文件为空，返回NULL
 struct BorrowNode* FileReadBorrow(int db_num)
 {
     int node_size = sizeof(struct BorrowNode);
@@ -270,10 +278,14 @@ struct BorrowNode* FileReadBorrow(int db_num)
 
     FILE* fp_borrow = fopen(borrow_filename, "rb");
 
-    if (fp_borrow == NULL) //文件不存在
+    fseek(fp_borrow, 0L, SEEK_END);
+    if (ftell(fp_borrow) == 0) //文件为空
+    {
         return NULL;
+    }
 
-    //文件存在
+    //文件不为空
+    fseek(fp_borrow, 0L, SEEK_SET);
     struct BorrowNode* head = NULL;
     struct BorrowNode* p = NULL;
 

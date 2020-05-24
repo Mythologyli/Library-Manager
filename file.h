@@ -55,7 +55,7 @@ int FileWriteBorrow(struct BorrowNode* node, int db_num);
 
 
 
-//从文件中读出链表。若不存在，返回NULL
+//从文件中读出链表。若文件为空，返回NULL
 struct BookNode* FileReadBook(int db_num);
 struct UserNode* FileReadUser(void);
 struct BorrowNode* FileReadBorrow(int db_num);

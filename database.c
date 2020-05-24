@@ -85,24 +85,20 @@ struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data)
 	struct BookNode* p = head;
 	struct BookNode* q = head;
 
-	int q_id = 1;
+	int q_id = 0;
+	q = (struct BookNode*)malloc(sizeof(struct BookNode));
 
 	if (head != NULL)
 	{
+		q_id++;
 		while (p->next != NULL)
 		{
 			q_id++;
 			p = p->next;
 		}
-
-		q = (struct BookNode*)malloc(sizeof(struct BookNode));
-
 		p->next = q;
 	}
-	else
-	{
-		q = (struct BookNode*)malloc(sizeof(struct BookNode));
-	}
+
 
 	//写入
 	q->book_id = q_id + 1;
@@ -138,23 +134,18 @@ struct UserNode* AddUserNode(struct UserNode* node, struct UserNode data)
 	struct UserNode* p = head;
 	struct UserNode* q = head;
 
-	int q_id = 1;
+	int q_id = 0;
+	q = (struct UserNode*)malloc(sizeof(struct UserNode));
 
 	if (head != NULL)
 	{
+		q_id++;
 		while (p->next != NULL)
 		{
 			q_id++;
 			p = p->next;
 		}
-
-		q = (struct UserNode*)malloc(sizeof(struct UserNode));
-
 		p->next = q;
-	}
-	else
-	{
-		q = (struct UserNode*)malloc(sizeof(struct UserNode));
 	}
 
 	//写入
@@ -185,23 +176,18 @@ struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data
 	struct BorrowNode* p = head;
 	struct BorrowNode* q = head;
 
-	int q_id = 1;
+	int q_id = 0;
+	q = (struct BorrowNode*)malloc(sizeof(struct BorrowNode));
 
 	if (head != NULL)
 	{
+		q_id++;
 		while (p->next != NULL)
 		{
 			q_id++;
 			p = p->next;
 		}
-
-		q = (struct BorrowNode*)malloc(sizeof(struct BorrowNode));
-
 		p->next = q;
-	}
-	else
-	{
-		q = (struct BorrowNode*)malloc(sizeof(struct BorrowNode));
 	}
 
 	//写入

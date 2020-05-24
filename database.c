@@ -39,6 +39,7 @@ int CheckBookAmount(struct BookNode* node, int check_mode)
 }
 
 
+
 //返回用户的个数
 int CheckUserAmount(struct UserNode* node, int check_mode)
 {
@@ -57,6 +58,7 @@ int CheckUserAmount(struct UserNode* node, int check_mode)
 }
 
 
+
 //返回借阅的个数
 int CheckBorrowAmount(struct BorrowNode* node, int check_mode)
 {
@@ -73,6 +75,7 @@ int CheckBorrowAmount(struct BorrowNode* node, int check_mode)
 
 	return i;
 }
+
 
 
 //新增图书节点
@@ -102,12 +105,12 @@ struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data)
 	}
 
 	//写入
-	q->book_id = data.book_id;
+	q->book_id = q_id + 1;
 
-	strcpy(q->book_name , data.book_name);
-	
+	strcpy(q->book_name, data.book_name);
+
 	for (int i = 0; i < 5; i++)
-		strcpy(q->book_keyword[i] , data.book_keyword[i]);
+		strcpy(q->book_keyword[i], data.book_keyword[i]);
 
 	for (int i = 0; i < 3; i++)
 		strcpy(q->book_writer[i], data.book_writer[i]);
@@ -117,7 +120,7 @@ struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data)
 	q->book_date = data.book_date;
 
 	q->book_status = EXIST;
-	
+
 	q->next = NULL;
 
 	if (head == NULL)
@@ -125,6 +128,101 @@ struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data)
 
 	return head;
 }
+
+
+
+//新增用户节点
+struct UserNode* AddUserNode(struct UserNode* node, struct UserNode data)
+{
+	struct UserNode* head = node;
+	struct UserNode* p = head;
+	struct UserNode* q = head;
+
+	int q_id = 1;
+
+	if (head != NULL)
+	{
+		while (p->next != NULL)
+		{
+			q_id++;
+			p = p->next;
+		}
+
+		q = (struct UserNode*)malloc(sizeof(struct UserNode));
+
+		p->next = q;
+	}
+	else
+	{
+		q = (struct UserNode*)malloc(sizeof(struct UserNode));
+	}
+
+	//写入
+	q->user_id = q_id + 1;
+
+	strcpy(q->user_name, data.user_name);
+
+	q->user_sex = data.user_sex;
+
+	strcpy(q->user_work, data.user_work);
+
+	q->user_status = data.user_status;
+
+	q->next = NULL;
+
+	if (head == NULL)
+		head = q;
+
+	return head;
+}
+
+
+
+//新增借阅节点
+struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data)
+{
+	struct BorrowNode* head = node;
+	struct BorrowNode* p = head;
+	struct BorrowNode* q = head;
+
+	int q_id = 1;
+
+	if (head != NULL)
+	{
+		while (p->next != NULL)
+		{
+			q_id++;
+			p = p->next;
+		}
+
+		q = (struct BorrowNode*)malloc(sizeof(struct BorrowNode));
+
+		p->next = q;
+	}
+	else
+	{
+		q = (struct BorrowNode*)malloc(sizeof(struct BorrowNode));
+	}
+
+	//写入
+	q->borrow_id = q_id + 1;
+
+	q->book_id = data.book_id;
+	q->user_id = data.user_id;
+
+	q->borrow_date = data.borrow_date;
+	q->return_date = data.return_date;
+
+	q->borrow_status = data.borrow_status;
+
+	q->next = NULL;
+
+	if (head == NULL)
+		head = q;
+
+	return head;
+}
+
 
 
 //链表整型内容的读取 

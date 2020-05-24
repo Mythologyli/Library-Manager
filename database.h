@@ -62,46 +62,46 @@
 //图书库结构
 struct BookNode
 {
-    int book_id; //从1开始递增，具有唯一性
+	int book_id; //从1开始递增，具有唯一性
 
 	char book_name[MAX_LEN];//书名
 	char book_keyword[5][MAX_LEN];//关键词
 	char book_writer[3][MAX_LEN];//作者
 	char book_publish[MAX_LEN];//出版社
-    struct Date book_date; //出版日期
+	struct Date book_date; //出版日期
 
-    int book_status; //图书状态（是否删除）
+	int book_status; //图书状态（是否删除）
 
-    struct BookNode *next;
+	struct BookNode* next;
 };
 
 //用户库结构
 struct UserNode
 {
-    int user_id; //从1开始递增，具有唯一性
+	int user_id; //从1开始递增，具有唯一性
 
 	char user_name[MAX_LEN]; //用户名
-    int user_sex; //性别
+	int user_sex; //性别
 	char user_work[MAX_LEN]; //工作单位
 
-    int user_status; //用户状态（是否删除）
+	int user_status; //用户状态（是否删除）
 
-    struct UserNode *next;
+	struct UserNode* next;
 };
 
 //借阅库结构
 struct BorrowNode
 {
-    int borrow_id; //从1开始递增，具有唯一性
+	int borrow_id; //从1开始递增，具有唯一性
 
-    int book_id; //图书id
-    int user_id; //用户id
-    struct Date borrow_date; //借阅日期
-    struct Date return_date; //应还日期
-    
-    int borrow_status; //借阅状态（是否删除，删除即表示已归还）
+	int book_id; //图书id
+	int user_id; //用户id
+	struct Date borrow_date; //借阅日期
+	struct Date return_date; //应还日期
 
-    struct BorrowNode *next; 
+	int borrow_status; //借阅状态（是否删除，删除即表示已归还）
+
+	struct BorrowNode* next;
 };
 
 
@@ -117,8 +117,8 @@ int CheckBorrowAmount(struct BorrowNode* node, int check_mode);
 
 //新增一个节点
 struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data);
-//
-//
+struct UserNode* AddUserNode(struct UserNode* node, struct UserNode data);
+struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data);
 
 
 

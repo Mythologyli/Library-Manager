@@ -6,7 +6,7 @@
 内容：
 图书库、用户库、借阅库结构；
 关于各种库的宏定义；
-用于新增一个库的函数的声明。
+查找节点个数的函数的声明；
 新增节点、删除节点、读取节点、更改节点、搜索节点五种基本函数的声明。
 */
 
@@ -107,11 +107,18 @@ struct BorrowNode
 
 
 
+//返回节点的个数
+int CheckBookAmount(struct BookNode* node, int check_mode);
+int CheckUserAmount(struct UserNode* node, int check_mode);
+int CheckBorrowAmount(struct BorrowNode* node, int check_mode);
+
+
+
 
 //新增一个节点
-int AddBookNode(...);
-int AddUserNode(...);
-int AddBorrowNode(...);
+//int AddBookNode(...);
+//int AddUserNode(...);
+//int AddBorrowNode(...);
 
 
 
@@ -125,13 +132,13 @@ int DeleteNode(void* Node, int node_name, int id);
 //链表整型内容的读取
 int ReadNodeInt(void* Node, int node_name, int id, int int_name);
 
-/* 链表单个字符串内容的读取 */
+//链表单个字符串内容的读取
 char* ReadNodeString(void* Node, int node_name, int id, int string_name);
 
-/* 链表字符串数组的读取 */
+//链表字符串数组的读取
 char** ReadNodeStringArray(void* Node, int node_name, int id, int string_array_name);
 
-/* 链表日期的读取 */
+//链表日期的读取
 struct Date ReadNodeDate(void* Node, int node_name, int id, int date_name);
 
 
@@ -140,13 +147,13 @@ struct Date ReadNodeDate(void* Node, int node_name, int id, int date_name);
 //链表整型内容的更改
 int ChangeNodeInt(void* Node, int node_name, int id, int int_name, int int_value);
 
-/* 链表单个字符串内容的更改 */
+//链表单个字符串内容的更改
 int ChangeNodeString(void* Node, int node_name, int id, int string_name, char* string_value);
 
-/* 链表字符串数组的更改 */
+//链表字符串数组的更改
 int ChangeNodeStringArray(void* Node, int node_name, int id, int string_array_name, char** string_array_value);
 
-/* 链表日期的更改 */
+//链表日期的更改
 int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date date_value);
 
 
@@ -157,13 +164,13 @@ int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date
 //返回一个存放搜索结果的整型数组，以0作为结束标志，例如，id为1,3,7的结点符合条件，则返回{1，3，7，0}
 int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int search_mode);
 
-/* 链表单个字符串内容的搜索 */
+//链表单个字符串内容的搜索
 int* SearchNodeString(void* Node, int node_name, int string_name, char* string_value, int search_mode);
 
-/* 链表字符串数组的搜索*/
+//链表字符串数组的搜索
 int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, char** string_array_value, int search_mode);
 
-/* 链表日期的搜索 */
+//链表日期的搜索
 int* SearchNodeDate(void* Node, int node_name, int date_name, struct Date date_value, int search_mode);
 
 

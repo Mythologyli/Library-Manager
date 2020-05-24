@@ -1,10 +1,10 @@
 /*
 文件：database.c
 
-作者：古亚青
+作者：古亚青、李培生
 
 内容：
-用于新增一个库的函数。
+查找节点个数的函数；
 新增节点、删除节点、读取节点、更改节点、搜索节点五种基本函数。
 */
 
@@ -20,6 +20,59 @@
 
 
 
+
+//返回书的个数
+int CheckBookAmount(struct BookNode* node, int check_mode)
+{
+	struct BookNode* p = node;
+	int i = 0;
+
+	while (p != NULL)
+	{
+		if (p->book_status == EXIST || check_mode == SEARCH_ALL)
+			i++;
+
+		p = p->next;
+	}
+
+	return i;
+}
+
+
+//返回用户的个数
+int CheckUserAmount(struct UserNode* node, int check_mode)
+{
+	struct UserNode* p = node;
+	int i = 0;
+
+	while (p != NULL)
+	{
+		if (p->user_status == EXIST || check_mode == SEARCH_ALL)
+			i++;
+
+		p = p->next;
+	}
+
+	return i;
+}
+
+
+//返回借阅的个数
+int CheckBorrowAmount(struct BorrowNode* node, int check_mode)
+{
+	struct BorrowNode* p = node;
+	int i = 0;
+
+	while (p != NULL)
+	{
+		if (p->borrow_status == EXIST || check_mode == SEARCH_ALL)
+			i++;
+
+		p = p->next;
+	}
+
+	return i;
+}
 
 
 //链表整型内容的读取 

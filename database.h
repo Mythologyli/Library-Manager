@@ -107,11 +107,6 @@ struct BorrowNode
 
 
 
-//新增一个库
-void* AddDatabase(int node_name);
-
-
-
 
 //新增一个节点
 int AddBookNode(...);

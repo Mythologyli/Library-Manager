@@ -649,7 +649,7 @@ int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date
 //链表整型内容的搜索
 int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int search_mode)
 {
-	int* L, i = 0;
+	int* L  = NULL, i = 0;
 
 	switch (node_name)
 	{
@@ -830,7 +830,7 @@ int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int s
 //链表单个字符串内容的搜索
 int* SearchNodeString(void* Node, int node_name, int string_name, char* string_value, int search_mode)
 {
-	int* L, i = 0;
+	int* L = NULL, i = 0;
 
 	switch (node_name)
 	{
@@ -977,7 +977,7 @@ int* SearchNodeString(void* Node, int node_name, int string_name, char* string_v
 //链表字符串数组的搜索
 int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, char** string_array_value, int search_mode)
 {
-	int* L, i = 0, j = 0;
+	int* L = NULL, i = 0, j = 0;
 
 	char(*str)[MAX_LEN] = string_array_value;//定义数组指针，指向传入的二维字符数组的第一行
 
@@ -1089,7 +1089,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 //链表日期的搜索
 int* SearchNodeDate(void* Node, int node_name, int date_name, struct Date date_value, int search_mode)
 {
-	int* L, i = 0;
+	int* L = NULL, i = 0;
 	L = (int*)calloc(100, sizeof(int));//开辟数组空间存放查找结果
 
 	switch (node_name)

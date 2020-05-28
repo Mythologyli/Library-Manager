@@ -39,3 +39,71 @@ extern double winheight;
 //全局变量
 int list_content = LIST_NO; //控制列表显示的内容
 int* list; //id列表，末位为0
+
+
+
+
+//列表显示图书
+void DrawListBook(void)
+{
+    //图形相关
+    double x = 0.2;
+    double y = winheight - GetFontHeight() * 10;
+    double dx = 0.6;
+    double dy = GetFontHeight() * 1.5;
+
+    drawLabel
+    (
+        x, 
+        y, 
+        "ID    Name            Key1      Key2      Key3      Key4      Key5      Writer1  Writer2   Writer3   Publish                Year       Month    Day"
+    );
+    
+    for (int i = 0, j = 1; list[i] != 0; i++) //按列显示
+    {
+        if (ReadNodeInt(book_head, BOOK, list[i], BOOK_STATUS) == DELETE) //跳过已删除结点
+            continue;
+        
+        char temp_str[5]; //满足itoa函数的参数需要
+        char (*p_keyword)[MAX_LEN] = ReadNodeStringArray(book_head, BOOK, list[i], BOOK_KEYWORD);
+        char (*p_writer)[MAX_LEN] = ReadNodeStringArray(book_head, BOOK, list[i], BOOK_WRITER);
+
+        //ID
+        drawLabel(x, y - j * dy, itoa(list[i], temp_str, 10));
+
+        //书名
+        drawLabel(x + dx * 0.5, y - j * dy, ReadNodeString(book_head, BOOK, list[i], BOOK_NAME));
+
+        //图书关键词
+        drawLabel(x + dx * 2, y - j * dy, p_keyword[0]);
+
+        drawLabel(x + dx * 3, y - j * dy, p_keyword[1]);
+
+        drawLabel(x + dx * 4, y - j * dy, p_keyword[2]);
+
+        drawLabel(x + dx * 5, y - j * dy, p_keyword[3]);
+
+        drawLabel(x + dx * 6, y - j * dy, p_keyword[4]);
+
+        //图书作者
+        drawLabel(x + dx * 7, y - j * dy, p_writer[0]);
+
+        drawLabel(x + dx * 8, y - j * dy, p_writer[1]);
+
+        drawLabel(x + dx * 9, y - j * dy, p_writer[2]);
+
+        //出版社
+        drawLabel(x + dx * 10, y - j * dy, ReadNodeString(book_head, BOOK, list[i], BOOK_PUBLISH));
+
+        //出版日期
+        struct Date date = ReadNodeDate(book_head, BOOK, list[i], BOOK_DATE);
+
+        drawLabel(x + dx * 12, y - j * dy, itoa(date.year, temp_str, 10));
+    
+        drawLabel(x + dx * 13, y - j * dy, itoa(date.month, temp_str, 10));
+
+        drawLabel(x + dx * 14, y - j * dy, itoa(date.day, temp_str, 10));
+    
+        j++;
+    }
+}

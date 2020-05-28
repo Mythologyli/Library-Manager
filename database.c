@@ -650,13 +650,14 @@ int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date
 int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int search_mode)
 {
 	int* L, i = 0;
-	L = (int*)calloc(100, sizeof(int));//开辟数组空间存放查找结果
 
 	switch (node_name)
 	{
 		//在图书链表中查找 
 	case BOOK:
 	{
+		L = (int*)calloc(CheckBookAmount(Node, SEARCH_ALL) + 1, sizeof(int));//开辟数组空间存放查找结果
+
 		struct  BookNode* p = (struct BookNode*)Node;
 		switch (int_name)
 		{
@@ -683,6 +684,8 @@ int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int s
 	//在用户链表中查找 
 	case USER:
 	{
+		L = (int*)calloc(CheckUserAmount(Node, SEARCH_ALL) + 1, sizeof(int));//开辟数组空间存放查找结果
+		
 		struct  UserNode* p = (struct UserNode*)Node;
 		switch (int_name)
 		{
@@ -737,6 +740,8 @@ int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int s
 	//在借阅链表中查找 
 	case BORROW:
 	{
+		L = (int*)calloc(CheckBorrowAmount(Node, SEARCH_ALL) + 1, sizeof(int));//开辟数组空间存放查找结果
+		
 		struct  BorrowNode* p = (struct BorrowNode*)Node;
 		switch (int_name)
 		{
@@ -826,13 +831,14 @@ int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int s
 int* SearchNodeString(void* Node, int node_name, int string_name, char* string_value, int search_mode)
 {
 	int* L, i = 0;
-	L = (int*)calloc(100, sizeof(int));//开辟数组空间存放查找结果
 
 	switch (node_name)
 	{
 		//在图书链表中查找
 	case BOOK:
 	{
+		L = (int*)calloc(CheckBookAmount(Node, SEARCH_ALL) + 1, sizeof(int));//开辟数组空间存放查找结果
+		
 		struct  BookNode* p = (struct BookNode*)Node;
 		switch (string_name)
 		{
@@ -898,6 +904,8 @@ int* SearchNodeString(void* Node, int node_name, int string_name, char* string_v
 	//在用户链表中查找
 	case USER:
 	{
+		L = (int*)calloc(CheckUserAmount(Node, SEARCH_ALL) + 1, sizeof(int));//开辟数组空间存放查找结果
+		
 		struct  UserNode* p = (struct UserNode*)Node;
 		switch (string_name)
 		{
@@ -970,7 +978,6 @@ int* SearchNodeString(void* Node, int node_name, int string_name, char* string_v
 int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, char** string_array_value, int search_mode)
 {
 	int* L, i = 0, j = 0;
-	L = (int*)calloc(100, sizeof(int));//开辟数组空间存放查找结果
 
 	char(*str)[MAX_LEN] = string_array_value;//定义数组指针，指向传入的二维字符数组的第一行
 
@@ -978,6 +985,8 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 	{
 	case BOOK://在图书链表中查找
 	{
+		L = (int*)calloc(CheckBookAmount(Node, SEARCH_ALL) + 1, sizeof(int));//开辟数组空间存放查找结果
+		
 		struct BookNode* p = (struct BookNode*)Node;
 
 		switch (string_array_name)
@@ -1087,6 +1096,8 @@ int* SearchNodeDate(void* Node, int node_name, int date_name, struct Date date_v
 	{
 	case BOOK://在图书链表中查找
 	{
+		L = (int*)calloc(CheckBookAmount(Node, SEARCH_ALL) + 1, sizeof(int));//开辟数组空间存放查找结果
+		
 		struct BookNode* p = (struct BookNode*)Node;
 
 		switch (date_name)
@@ -1124,6 +1135,8 @@ int* SearchNodeDate(void* Node, int node_name, int date_name, struct Date date_v
 
 	case BORROW://在借阅链表中查找
 	{
+		L = (int*)calloc(CheckBorrowAmount(Node, SEARCH_ALL) + 1, sizeof(int));//开辟数组空间存放查找结果
+		
 		struct BorrowNode* p = (struct BorrowNode*)Node;
 
 		switch (date_name)

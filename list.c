@@ -209,3 +209,27 @@ void DrawListBorrow(void)
         j++;
     }
 }
+
+
+
+
+//设置显示内容
+void SetList(int set_list_content, int* set_list)
+{
+    list_content = set_list_content;
+    list = set_list;
+}
+
+
+
+
+//列表显示
+void DrawList(void)
+{
+    switch (list_content)
+    {
+    case LIST_BOOK: DrawListBook(); break;
+    case LIST_USER: DrawListUser(); break;
+    case LIST_BORROW: DrawListBorrow();
+    }
+}

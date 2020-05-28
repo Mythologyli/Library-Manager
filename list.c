@@ -149,3 +149,63 @@ void DrawListUser(void)
         j++;
     }
 }
+
+
+
+
+//列表显示借阅
+void DrawListBorrow(void)
+{
+    //图形相关
+    double x = 0.2;
+    double y = winheight - GetFontHeight() * 10;
+    double dx = 0.6;
+    double dy = GetFontHeight() * 1.5;
+
+    drawLabel
+    (
+        x, 
+        y, 
+        "ID           Book      User       Year      Month     Day        Year      Month     Day        Total      Status"
+    );
+
+    for (int i = 0, j = 1; list[i] != 0; i++) //按列显示
+    {
+        char temp_str[5]; //满足itoa函数的参数需要
+
+        //ID
+        drawLabel(x, y - j * dy, itoa(list[i], temp_str, 10));
+
+        //被借阅的书名
+        drawLabel(x + dx, y - j * dy, ReadNodeString(book_head, BOOK, ReadNodeInt(borrow_head, BORROW, list[i], BOOK_ID), BOOK_NAME));
+
+        //借阅人名称
+        drawLabel(x + dx * 2, y - j * dy, ReadNodeString(user_head, USER, ReadNodeInt(borrow_head, BORROW, list[i], USER_ID), USER_NAME));
+
+        //借阅日期
+        struct Date borrow_date = ReadNodeDate(borrow_head, BORROW, list[i], BORROW_DATE);
+
+        drawLabel(x + dx * 3, y - j * dy, itoa(borrow_date.year, temp_str, 10));
+
+        drawLabel(x + dx * 4, y - j * dy, itoa(borrow_date.month, temp_str, 10));
+
+        drawLabel(x + dx * 5, y - j * dy, itoa(borrow_date.day, temp_str, 10));
+        
+        //应还日期
+        struct Date return_date = ReadNodeDate(borrow_head, BORROW, list[i], RETURN_DATE);
+
+        drawLabel(x + dx * 6, y - j * dy, itoa(return_date.year, temp_str, 10));
+
+        drawLabel(x + dx * 7, y - j * dy, itoa(return_date.month, temp_str, 10));
+
+        drawLabel(x + dx * 8, y - j * dy, itoa(return_date.day, temp_str, 10));
+
+        //借阅天数
+        drawLabel(x + dx * 9, y - j * dy, itoa(DateInterval(borrow_date, return_date), temp_str, 10));
+
+        //借阅状态
+        drawLabel(x + dx * 10, y - j * dy, ReadNodeInt(borrow_head, BORROW, list[i], BORROW_STATUS) == EXIST ? "NOT RETURNED" : "RETURNED");
+        
+        j++;
+    }
+}

@@ -107,3 +107,45 @@ void DrawListBook(void)
         j++;
     }
 }
+
+
+
+
+//列表显示用户
+void DrawListUser(void)
+{
+    //图形相关
+    double x = 0.2;
+    double y = winheight - GetFontHeight() * 10;
+    double dx = 0.6;
+    double dy = GetFontHeight() * 1.5;
+
+    drawLabel
+    (
+        x, 
+        y, 
+        "ID    Name            Sex                       Workplace"
+    );
+
+    for (int i = 0, j = 1; list[i] != 0; i++) //按列显示
+    {
+        if (ReadNodeInt(user_head, USER, list[i], USER_STATUS) == DELETE) //跳过已删除结点
+            continue;
+        
+        char temp_str[5]; //满足itoa函数的参数需要
+
+        //ID
+        drawLabel(x, y - j * dy, itoa(list[i], temp_str, 10));
+
+        //用户名
+        drawLabel(x + dx * 0.5, y - j * dy, ReadNodeString(user_head, USER, list[i], USER_NAME));
+
+        //性别
+        drawLabel(x + dx * 2, y - j * dy, ReadNodeInt(user_head, USER, list[i], USER_SEX) == MALE ? "Male" : "Female");
+
+        //工作单位
+        drawLabel(x + dx * 4, y - j * dy, ReadNodeString(user_head, USER, list[i], USER_WORK));
+
+        j++;
+    }
+}

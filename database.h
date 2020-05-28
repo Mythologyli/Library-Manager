@@ -38,9 +38,10 @@
 #define USER_STATUS 9
 #define BOOK_ID 10
 #define USER_ID 11
-#define BORROW_DATE 12
-#define RETURN_DATE 13
-#define BORROW_STATUS 14
+#define BORROW_ID 12
+#define BORROW_DATE 13
+#define RETURN_DATE 14
+#define BORROW_STATUS 15
 
 //性别
 #define MALE 0

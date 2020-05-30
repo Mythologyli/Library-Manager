@@ -23,6 +23,7 @@ id列表，整型指针全局变量；
 
 #include "database.h"
 #include "date.h"
+#include "box.h"
 #include "list.h"
 
 
@@ -51,6 +52,12 @@ void DrawListBook(void)
     double y = winheight - GetFontHeight() * 10;
     double dx = 0.6;
     double dy = GetFontHeight() * 1.5;
+
+    if (book_head == NULL)
+    {
+        drawLabel(x, y, "No book in this database.");
+        return;
+    }
 
     drawLabel
     (
@@ -120,6 +127,12 @@ void DrawListUser(void)
     double dx = 0.6;
     double dy = GetFontHeight() * 1.5;
 
+    if (user_head == NULL)
+    {
+        drawLabel(x, y, "No user in this database.");
+        return;
+    }
+
     drawLabel
     (
         x, 
@@ -161,6 +174,12 @@ void DrawListBorrow(void)
     double y = winheight - GetFontHeight() * 10;
     double dx = 0.6;
     double dy = GetFontHeight() * 1.5;
+
+    if (borrow_head == NULL)
+    {
+        drawLabel(x, y, "No borrow in this database.");
+        return;
+    }
 
     drawLabel
     (

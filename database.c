@@ -293,6 +293,7 @@ int ReadNodeInt(void* Node, int node_name, int id, int int_name)
 			return p->book_status;
 		}
 	}
+	break;
 
 	case USER://在用户库中读取
 	{
@@ -311,6 +312,7 @@ int ReadNodeInt(void* Node, int node_name, int id, int int_name)
 			return p->user_status;
 		}
 	}
+	break;
 
 	case BORROW://在借阅库中读取
 	{
@@ -331,6 +333,7 @@ int ReadNodeInt(void* Node, int node_name, int id, int int_name)
 			return p->borrow_status;
 		}
 	}
+	break;
 	}
 }
 
@@ -358,6 +361,7 @@ char* ReadNodeString(void* Node, int node_name, int id, int string_name)
 			return p->book_publish;
 		}
 	}
+	break;
 
 	case USER://在用户库中读取
 	{
@@ -376,6 +380,7 @@ char* ReadNodeString(void* Node, int node_name, int id, int string_name)
 			return p->user_work;
 		}
 	}
+	break;
 	}
 }
 
@@ -403,6 +408,7 @@ char** ReadNodeStringArray(void* Node, int node_name, int id, int string_array_n
 			return p->book_writer;
 		}
 	}
+	break;
 	}
 }
 
@@ -428,6 +434,7 @@ struct Date ReadNodeDate(void* Node, int node_name, int id, int date_name)
 			return p->book_date;
 		}
 	}
+	break;
 
 	case BORROW://在借阅库中读取
 	{
@@ -446,6 +453,7 @@ struct Date ReadNodeDate(void* Node, int node_name, int id, int date_name)
 			return p->return_date;
 		}
 	}
+	break;
 	}
 }
 
@@ -468,9 +476,10 @@ int ChangeNodeInt(void* Node, int node_name, int id, int int_name, int int_value
 		switch (int_name)
 		{
 		case BOOK_STATUS:
-			p->book_status = int_value;
+			p->book_status = int_value; break;
 		}
 	}
+	break;
 
 	case USER://在用户链表中更改
 	{
@@ -484,11 +493,12 @@ int ChangeNodeInt(void* Node, int node_name, int id, int int_name, int int_value
 		switch (int_name)
 		{
 		case USER_SEX:
-			p->user_sex = int_value;
+			p->user_sex = int_value; break;
 		case USER_STATUS:
-			p->user_status = int_value;
+			p->user_status = int_value; break;
 		}
 	}
+	break;
 
 	case BORROW://在借阅链表中更改
 	{
@@ -502,13 +512,14 @@ int ChangeNodeInt(void* Node, int node_name, int id, int int_name, int int_value
 		switch (int_name)
 		{
 		case BOOK_ID:
-			p->book_id = int_value;
+			p->book_id = int_value; break;
 		case USER_ID:
-			p->user_id = int_value;
+			p->user_id = int_value; break;
 		case BORROW_STATUS:
-			p->borrow_status = int_value;
+			p->borrow_status = int_value; break;
 		}
 	}
+	break;
 	}
 
 	return id;  //返回被更改结点的id
@@ -533,11 +544,12 @@ int ChangeNodeString(void* Node, int node_name, int id, int string_name, char* s
 		switch (string_name)
 		{
 		case BOOK_NAME:
-			strcpy(p->book_name, string_value);
+			strcpy(p->book_name, string_value); break;
 		case BOOK_PUBLISH:
-			strcpy(p->book_publish, string_value);
+			strcpy(p->book_publish, string_value); break;
 		}
 	}
+	break;
 
 	case USER://在用户链表中更改
 	{
@@ -551,11 +563,12 @@ int ChangeNodeString(void* Node, int node_name, int id, int string_name, char* s
 		switch (string_name)
 		{
 		case USER_NAME:
-			strcpy(p->user_name, string_value);
+			strcpy(p->user_name, string_value); break;
 		case USER_WORK:
-			strcpy(p->user_work, string_value);
+			strcpy(p->user_work, string_value); break;
 		}
 	}
+	break;
 	}
 
 	return id;
@@ -586,13 +599,16 @@ int ChangeNodeStringArray(void* Node, int node_name, int id, int string_array_na
 			{
 				strcpy(p->book_keyword[j], str[j]);
 			}
+			break;
 		case BOOK_WRITER:
 			for (j = 0; j <= 2; j++)
 			{
 				strcpy(p->book_writer[j], str[j]);
 			}
+			break;
 		}
 	}
+	break;
 	}
 
 	return id;
@@ -617,9 +633,10 @@ int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date
 		switch (date_name)
 		{
 		case BOOK_DATE:
-			p->book_date = date_value;
+			p->book_date = date_value; break;
 		}
 	}
+	break;
 
 	case BORROW://在借阅链表中更改
 	{
@@ -633,11 +650,12 @@ int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date
 		switch (date_name)
 		{
 		case BORROW_DATE:
-			p->borrow_date = date_value;
+			p->borrow_date = date_value; break;
 		case RETURN_DATE:
-			p->return_date = date_value;
+			p->return_date = date_value; break;
 		}
 	}
+	break;
 	}
 
 	return id;

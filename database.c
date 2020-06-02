@@ -1015,7 +1015,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 			{
 				while (p != NULL)
 				{
-					for (j = 0; j <= 5; j++)
+					for (j = 0; j < 5; j++)
 					{
 						if (strcmp(p->book_keyword[j], str[j]) != 0)
 							break;
@@ -1035,7 +1035,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 				{
 					if (p->book_status == EXIST)
 					{
-						for (j = 0; j <= 5; j++)
+						for (j = 0; j < 5; j++)
 						{
 							if (strcmp(p->book_keyword[j], str[j]) != 0)
 								break;
@@ -1058,7 +1058,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 			{
 				while (p != NULL)
 				{
-					for (j = 0; j <= 2; j++)
+					for (j = 0; j < 3; j++)
 					{
 						if (strcmp(p->book_writer[j], str[j]) != 0)
 							break;
@@ -1078,7 +1078,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 				{
 					if (p->book_status == EXIST)
 					{
-						for (j = 0; j <= 2; j++)
+						for (j = 0; j < 3; j++)
 						{
 							if (strcmp(p->book_writer[j], str[j]) != 0)
 								break;

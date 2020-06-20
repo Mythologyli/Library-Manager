@@ -795,10 +795,10 @@ void DrawBorrowBoxAdmin(void)
 		if 
 		(
 			temp.book_id > 0
-			&& temp.book_id < CheckBookAmount(book_head, SEARCH_ALL)
+			&& temp.book_id <= CheckBookAmount(book_head, SEARCH_ALL)
 			&& ReadNodeInt(book_head, BOOK, temp.book_id, BOOK_STATUS) == EXIST 
 			&& temp.user_id > 0
-			&& temp.user_id < CheckUserAmount(user_head, SEARCH_ALL)
+			&& temp.user_id <= CheckUserAmount(user_head, SEARCH_ALL)
 			&& ReadNodeInt(user_head, USER, temp.user_id, USER_STATUS) == EXIST 
 			&& DateInterval(temp.borrow_date, temp.return_date) > 0
 		)
@@ -858,10 +858,10 @@ void DrawBorrowBoxUser(void)
 		if
 		(
 			temp.book_id > 0
-			&& temp.book_id < CheckBookAmount(book_head, SEARCH_ALL)
+			&& temp.book_id <= CheckBookAmount(book_head, SEARCH_ALL)
 			&& ReadNodeInt(book_head, BOOK, temp.book_id, BOOK_STATUS) == EXIST
 			&& temp.user_id > 0
-			&& temp.user_id < CheckUserAmount(user_head, SEARCH_ALL)
+			&& temp.user_id <= CheckUserAmount(user_head, SEARCH_ALL)
 			&& ReadNodeInt(user_head, USER, temp.user_id, USER_STATUS) == EXIST  
 			&& UserBorrowTimeExist(user_head, temp.user_id, borrow_head) < max_borrow_time
 		)

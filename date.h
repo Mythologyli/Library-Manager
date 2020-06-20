@@ -1,12 +1,13 @@
 /*
 文件：date.h
 
-作者：李培生
+作者：黄怀萱
 
 内容：
 日期结构；
-用于新建日期的函数的声明；
-用于计算间隔天数的函数的声明。
+新建日期的函数的声明；
+计算间隔天数的函数的声明；
+计算给定起始日期后n天的日期的函数的声明。
 */
 
 
@@ -35,6 +36,10 @@ struct Date AddDate(int year, int month, int day);
 int DateInterval(struct Date start_date, struct Date end_date);
 
 
+
+
+//计算给定起始日期后n天的日期
+struct Date NextNDate(struct Date start_date, int n);
 
 
 #endif

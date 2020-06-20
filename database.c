@@ -4,16 +4,16 @@
 作者：古亚青、李培生
 
 内容：
-查找节点个数的函数；
-新增节点、删除节点、读取节点、更改节点、搜索节点五种基本函数。
+查找结点个数的函数；
+新增结点、删除结点、读取结点、更改结点、搜索结点五种基本函数。
 */
 
 
 
 
 #include <stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 #include "database.h"
@@ -40,6 +40,7 @@ int CheckBookAmount(struct BookNode* node, int check_mode)
 
 
 
+
 //返回用户的个数
 int CheckUserAmount(struct UserNode* node, int check_mode)
 {
@@ -56,6 +57,7 @@ int CheckUserAmount(struct UserNode* node, int check_mode)
 
 	return i;
 }
+
 
 
 
@@ -78,7 +80,8 @@ int CheckBorrowAmount(struct BorrowNode* node, int check_mode)
 
 
 
-//新增图书节点
+
+//新增图书结点
 struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data)
 {
 	struct BookNode* head = node;
@@ -127,7 +130,8 @@ struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data)
 
 
 
-//新增用户节点
+
+//新增用户结点
 struct UserNode* AddUserNode(struct UserNode* node, struct UserNode data)
 {
 	struct UserNode* head = node;
@@ -157,7 +161,7 @@ struct UserNode* AddUserNode(struct UserNode* node, struct UserNode data)
 
 	strcpy(q->user_work, data.user_work);
 
-	q->user_status = EXIST;
+	q->user_status = NOT_PASS;
 
 	q->next = NULL;
 
@@ -169,7 +173,8 @@ struct UserNode* AddUserNode(struct UserNode* node, struct UserNode data)
 
 
 
-//新增借阅节点
+
+//新增借阅结点
 struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data)
 {
 	struct BorrowNode* head = node;
@@ -211,7 +216,40 @@ struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data
 
 
 
-//删除一个节点，成功则返回1，若不存在该id则返回0
+
+//读取一个图书结点
+struct BookNode ReadBookNode(struct BookNode* node, int book_id)
+{
+	struct  BookNode* p = node;
+	int i;
+	for (i = 1; i < book_id; i++)
+	{
+		p = p->next;
+	}
+
+	return *p;
+}
+
+
+
+
+//读取一个用户结点
+struct UserNode ReadUserNode(struct UserNode* node, int user_id)
+{
+	struct  UserNode* p = node;
+	int i;
+	for (i = 1; i < user_id; i++)
+	{
+		p = p->next;
+	}
+
+	return *p;
+}
+
+
+
+
+//删除一个结点，成功则返回1，若不存在该id则返回0
 int DeleteNode(void* Node, int node_name, int id)
 {
 	switch (node_name)
@@ -273,6 +311,7 @@ int DeleteNode(void* Node, int node_name, int id)
 
 
 
+
 //链表整型内容的读取 
 int ReadNodeInt(void* Node, int node_name, int id, int int_name)
 {
@@ -293,7 +332,6 @@ int ReadNodeInt(void* Node, int node_name, int id, int int_name)
 			return p->book_status;
 		}
 	}
-	break;
 
 	case USER://在用户库中读取
 	{
@@ -312,7 +350,6 @@ int ReadNodeInt(void* Node, int node_name, int id, int int_name)
 			return p->user_status;
 		}
 	}
-	break;
 
 	case BORROW://在借阅库中读取
 	{
@@ -333,9 +370,9 @@ int ReadNodeInt(void* Node, int node_name, int id, int int_name)
 			return p->borrow_status;
 		}
 	}
-	break;
 	}
 }
+
 
 
 
@@ -361,7 +398,6 @@ char* ReadNodeString(void* Node, int node_name, int id, int string_name)
 			return p->book_publish;
 		}
 	}
-	break;
 
 	case USER://在用户库中读取
 	{
@@ -380,9 +416,9 @@ char* ReadNodeString(void* Node, int node_name, int id, int string_name)
 			return p->user_work;
 		}
 	}
-	break;
 	}
 }
+
 
 
 
@@ -408,9 +444,9 @@ char** ReadNodeStringArray(void* Node, int node_name, int id, int string_array_n
 			return p->book_writer;
 		}
 	}
-	break;
 	}
 }
+
 
 
 
@@ -434,7 +470,6 @@ struct Date ReadNodeDate(void* Node, int node_name, int id, int date_name)
 			return p->book_date;
 		}
 	}
-	break;
 
 	case BORROW://在借阅库中读取
 	{
@@ -453,9 +488,9 @@ struct Date ReadNodeDate(void* Node, int node_name, int id, int date_name)
 			return p->return_date;
 		}
 	}
-	break;
 	}
 }
+
 
 
 
@@ -476,7 +511,7 @@ int ChangeNodeInt(void* Node, int node_name, int id, int int_name, int int_value
 		switch (int_name)
 		{
 		case BOOK_STATUS:
-			p->book_status = int_value; break;
+			p->book_status = int_value;
 		}
 	}
 	break;
@@ -493,9 +528,10 @@ int ChangeNodeInt(void* Node, int node_name, int id, int int_name, int int_value
 		switch (int_name)
 		{
 		case USER_SEX:
-			p->user_sex = int_value; break;
+			p->user_sex = int_value;
+			break;
 		case USER_STATUS:
-			p->user_status = int_value; break;
+			p->user_status = int_value;
 		}
 	}
 	break;
@@ -512,18 +548,21 @@ int ChangeNodeInt(void* Node, int node_name, int id, int int_name, int int_value
 		switch (int_name)
 		{
 		case BOOK_ID:
-			p->book_id = int_value; break;
+			p->book_id = int_value;
+			break;
 		case USER_ID:
-			p->user_id = int_value; break;
+			p->user_id = int_value;
+			break;
 		case BORROW_STATUS:
-			p->borrow_status = int_value; break;
+			p->borrow_status = int_value;
+			break;
 		}
 	}
-	break;
 	}
 
 	return id;  //返回被更改结点的id
 }
+
 
 
 
@@ -544,12 +583,11 @@ int ChangeNodeString(void* Node, int node_name, int id, int string_name, char* s
 		switch (string_name)
 		{
 		case BOOK_NAME:
-			strcpy(p->book_name, string_value); break;
+			strcpy(p->book_name, string_value);
 		case BOOK_PUBLISH:
-			strcpy(p->book_publish, string_value); break;
+			strcpy(p->book_publish, string_value);
 		}
 	}
-	break;
 
 	case USER://在用户链表中更改
 	{
@@ -563,16 +601,16 @@ int ChangeNodeString(void* Node, int node_name, int id, int string_name, char* s
 		switch (string_name)
 		{
 		case USER_NAME:
-			strcpy(p->user_name, string_value); break;
+			strcpy(p->user_name, string_value);
 		case USER_WORK:
-			strcpy(p->user_work, string_value); break;
+			strcpy(p->user_work, string_value);
 		}
 	}
-	break;
 	}
 
 	return id;
 }
+
 
 
 
@@ -599,20 +637,18 @@ int ChangeNodeStringArray(void* Node, int node_name, int id, int string_array_na
 			{
 				strcpy(p->book_keyword[j], str[j]);
 			}
-			break;
 		case BOOK_WRITER:
 			for (j = 0; j <= 2; j++)
 			{
 				strcpy(p->book_writer[j], str[j]);
 			}
-			break;
 		}
 	}
-	break;
 	}
 
 	return id;
 }
+
 
 
 
@@ -633,10 +669,9 @@ int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date
 		switch (date_name)
 		{
 		case BOOK_DATE:
-			p->book_date = date_value; break;
+			p->book_date = date_value;
 		}
 	}
-	break;
 
 	case BORROW://在借阅链表中更改
 	{
@@ -650,12 +685,11 @@ int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date
 		switch (date_name)
 		{
 		case BORROW_DATE:
-			p->borrow_date = date_value; break;
+			p->borrow_date = date_value;
 		case RETURN_DATE:
-			p->return_date = date_value; break;
+			p->return_date = date_value;
 		}
 	}
-	break;
 	}
 
 	return id;
@@ -845,6 +879,7 @@ int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int s
 
 
 
+
 //链表单个字符串内容的搜索
 int* SearchNodeString(void* Node, int node_name, int string_name, char* string_value, int search_mode)
 {
@@ -992,6 +1027,7 @@ int* SearchNodeString(void* Node, int node_name, int string_name, char* string_v
 
 
 
+
 //链表字符串数组的搜索
 int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, char** string_array_value, int search_mode)
 {
@@ -1015,7 +1051,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 			{
 				while (p != NULL)
 				{
-					for (j = 0; j < 5; j++)
+					for (j = 0; j <= 5; j++)
 					{
 						if (strcmp(p->book_keyword[j], str[j]) != 0)
 							break;
@@ -1035,7 +1071,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 				{
 					if (p->book_status == EXIST)
 					{
-						for (j = 0; j < 5; j++)
+						for (j = 0; j <= 5; j++)
 						{
 							if (strcmp(p->book_keyword[j], str[j]) != 0)
 								break;
@@ -1058,7 +1094,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 			{
 				while (p != NULL)
 				{
-					for (j = 0; j < 3; j++)
+					for (j = 0; j <= 2; j++)
 					{
 						if (strcmp(p->book_writer[j], str[j]) != 0)
 							break;
@@ -1078,7 +1114,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 				{
 					if (p->book_status == EXIST)
 					{
-						for (j = 0; j < 3; j++)
+						for (j = 0; j <= 2; j++)
 						{
 							if (strcmp(p->book_writer[j], str[j]) != 0)
 								break;
@@ -1101,6 +1137,7 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 
 	return L;  //返回存放查找结果的数组
 }
+
 
 
 

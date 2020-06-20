@@ -6,8 +6,8 @@
 内容：
 图书库、用户库、借阅库结构；
 关于各种库的宏定义；
-查找节点个数的函数的声明；
-新增节点、删除节点、读取节点、更改节点、搜索节点五种基本函数的声明。
+查找结点个数的函数的声明；
+新增结点、删除结点、读取结点、更改结点、搜索结点五种基本函数的声明。
 */
 
 
@@ -47,9 +47,10 @@
 #define MALE 0
 #define FEMALE 1
 
-//节点状态
+//结点状态
 #define EXIST 0
 #define DELETE 1
+#define NOT_PASS 2 //待审核，仅适用于用户结点
 
 //搜索功能
 #define SEARCH_EXIST 0
@@ -57,6 +58,7 @@
 
 //字符串最大长度
 #define MAX_LEN 15
+
 
 
 
@@ -85,7 +87,7 @@ struct UserNode
 	int user_sex; //性别
 	char user_work[MAX_LEN]; //工作单位
 
-	int user_status; //用户状态（是否删除）
+	int user_status; //用户状态（待审核、存在、删除）
 
 	struct UserNode* next;
 };
@@ -108,7 +110,7 @@ struct BorrowNode
 
 
 
-//返回节点的个数
+//返回结点的个数
 int CheckBookAmount(struct BookNode* node, int check_mode);
 int CheckUserAmount(struct UserNode* node, int check_mode);
 int CheckBorrowAmount(struct BorrowNode* node, int check_mode);
@@ -116,7 +118,7 @@ int CheckBorrowAmount(struct BorrowNode* node, int check_mode);
 
 
 
-//新增一个节点
+//新增一个结点
 struct BookNode* AddBookNode(struct BookNode* node, struct BookNode data);
 struct UserNode* AddUserNode(struct UserNode* node, struct UserNode data);
 struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data);
@@ -124,7 +126,14 @@ struct BorrowNode* AddBorrowNode(struct BorrowNode* node, struct BorrowNode data
 
 
 
-//删除一个节点，成功则返回1，若不存在该id则返回0
+//读取一个结点
+struct BookNode ReadBookNode(struct BookNode* node, int book_id);
+struct UserNode ReadUserNode(struct UserNode* node, int user_id);
+
+
+
+
+//删除一个结点，成功则返回1，若不存在该id则返回0
 int DeleteNode(void* Node, int node_name, int id);
 
 
@@ -160,7 +169,6 @@ int ChangeNodeDate(void* Node, int node_name, int id, int date_name, struct Date
 
 
 
-
 //链表整型内容的搜索
 //返回一个存放搜索结果的整型数组，以0作为结束标志，例如，id为1,3,7的结点符合条件，则返回{1，3，7，0}
 int* SearchNodeInt(void* Node, int node_name, int int_name, int int_value, int search_mode);
@@ -173,8 +181,6 @@ int* SearchNodeStringArray(void* Node, int node_name, int string_array_name, cha
 
 //链表日期的搜索
 int* SearchNodeDate(void* Node, int node_name, int date_name, struct Date date_value, int search_mode);
-
-
 
 
 #endif

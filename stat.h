@@ -14,6 +14,8 @@
 */
 
 
+#ifndef __STAT_H__
+#define __STAT_H__
 
 
 //查询图书总借阅次数
@@ -36,3 +38,6 @@ int FindMostBorrowUser(struct UserNode* user_node, struct BorrowNode* borrow_nod
 
 //查询出现数量最多的图书关键词
 char* FindMostBookKey(struct BookNode* book_node);
+
+
+#endif

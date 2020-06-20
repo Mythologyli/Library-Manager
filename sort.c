@@ -4,9 +4,9 @@
 作者：古亚青
 
 内容：
-对图书排序的函数；
-对用户排序的函数；
-对借阅排序的函数。
+对图书排序的函数的定义；
+对用户排序的函数的定义；
+对借阅排序的函数的定义。
 */
 
 
@@ -23,7 +23,7 @@
 
 
 //对图书排序
-int* SortBookNode(struct BookNode* Node, int sort_keyword, int sort_mode)
+int* SortBookNode(struct BookNode* Node, int node_name, int sort_mode)
 {
 	int i = 0;
 	int* L = (int*)calloc(CheckBookAmount(Node, SEARCH_ALL) + 1, sizeof(int)); //开辟数组空间存放查找结果
@@ -40,7 +40,7 @@ int* SortBookNode(struct BookNode* Node, int sort_keyword, int sort_mode)
 
 	int num = i;
 
-	switch (sort_keyword)
+	switch (node_name)
 	{
 	case BOOK_ID: //按书号排序
 	{
@@ -118,7 +118,7 @@ int* SortBookNode(struct BookNode* Node, int sort_keyword, int sort_mode)
 
 
 //对用户排序
-int* SortUserNode(struct UserNode* Node, int sort_keyword, int sort_mode)
+int* SortUserNode(struct UserNode* Node, int node_name, int sort_mode)
 {
 	int i = 0;
 	int* L = (int*)calloc(CheckUserAmount(Node, SEARCH_ALL) + 1, sizeof(int)); //开辟数组空间存放查找结果
@@ -135,7 +135,7 @@ int* SortUserNode(struct UserNode* Node, int sort_keyword, int sort_mode)
 
 	int num = i;
 
-	switch (sort_keyword)
+	switch (node_name)
 	{
 	case USER_ID: //按用户号排序
 	{
@@ -209,7 +209,7 @@ int* SortUserNode(struct UserNode* Node, int sort_keyword, int sort_mode)
 
 
 //对借阅排序
-int* SortBorrowNode(struct BorrowNode* Node, int sort_keyword, int sort_mode)
+int* SortBorrowNode(struct BorrowNode* Node, int node_name, int sort_mode)
 {
 	int i = 0;
 	int* L = (int*)calloc(CheckBorrowAmount(Node, SEARCH_ALL) + 1, sizeof(int)); //开辟数组空间存放查找结果
@@ -226,7 +226,7 @@ int* SortBorrowNode(struct BorrowNode* Node, int sort_keyword, int sort_mode)
 
 	int num = i;
 
-	switch (sort_keyword)
+	switch (node_name)
 	{
 	case BORROW_ID: //按用户号排序
 	{

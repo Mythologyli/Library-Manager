@@ -16,12 +16,10 @@
 
 
 
-//模糊匹配，若传入的关键词key是字符串str的子片段，则认为符合匹配条件，返回1；否则返回0
-int FuzzyCompare(char* str, char* key);
-
-
 //在链表中对字符串进行模糊搜索，返回一个整形数组，存放符合搜索条件的结点的id序列
 int* FuzzySearchNodeString(void* Node, int node_name, int string_name, char* string_value, int search_mode);
+
+
 
 
 //在链表中对二维字符数组进行模糊搜索，返回一个整形数组，存放符合搜索条件的结点的id序列

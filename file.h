@@ -1,7 +1,7 @@
 /*
 文件：file.h
 
-作者：李培生
+作者：
 
 内容：
 最大文件名长度的宏定义；
@@ -17,8 +17,7 @@
 #define __FILE_H__
 
 
-#include "database.h" //提供各种库结构的定义
-#include "date.h" //提供日期结构的定义
+
 
 
 
@@ -32,6 +31,10 @@
 //返回目前图书库（借阅库）数量。如果当前无Info文件存在，会自动新建Info文件并设定数量为0，返回0。
 int FileCheckInfo(void);
 
+int FileCheckBorrowDay(void);
+int FileCheckBorrowTime(void);
+void FileWriteBorrowDay(int borrow_day);
+void FileWriteBorrowTime(int borrow_time);
 
 
 
@@ -42,7 +45,7 @@ int FileUpdateInfo(void);
 
 
 //检测用户库文件状态。若存在，返回1；若不存在，自动新建用户库文件，返回0
-int FileCheckUser(void);
+void FileCheckUser(void);
 
 
 

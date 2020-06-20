@@ -5,6 +5,10 @@
 
 内容：
 从info文件中读取信息的函数；
+从borrowday文件中读取当前设置的借阅天数的函数；
+从borrowtime文件中读取当前设置的最大借阅次数的函数；
+向borrowday文件写入当前设置的借阅天数的函数；
+向borrowtime文件写入当前设置的最大借阅次数的函数；
 更新info文件中信息并增加文件的函数；
 检测用户库文件状态的函数；
 向文件中写入链表的函数；
@@ -16,12 +20,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
+
+#include "database.h" //提供各种库结构的定义
+#include "date.h" //提供日期结构的定义
+
+
 #include "file.h"
 
 
 
 
-//返回目前图书库（借阅库）数量。如果当前无Info文件存在，会自动新建Info文件并设定数量为0，返回0。
+//返回目前图书库（借阅库）数量。如果当前无Info文件存在，会自动新建Info文件并设定数量为0，返回0
 int FileCheckInfo(void)
 {
     int db_amount;
@@ -43,6 +53,86 @@ int FileCheckInfo(void)
     fclose(fp_info);
 
     return db_amount;
+}
+
+
+
+
+//返回当前借阅天数。如果当前无borrowday文件存在，会自动新建borrowday文件并设定数量为30，返回30
+int FileCheckBorrowDay(void)
+{
+    int borrow_day;
+    FILE* fp_borrow_day = fopen("borrowday", "r");
+
+    if (fp_borrow_day == NULL) //borrowday文件不存在
+    {
+        fp_borrow_day = fopen("borrowday", "w");
+        fprintf(fp_borrow_day, "30");
+
+        fclose(fp_borrow_day);
+
+        return 30;
+    }
+
+    //borrowday文件存在
+    fscanf(fp_borrow_day, "%d", &borrow_day);
+
+    fclose(fp_borrow_day);
+
+    return borrow_day;
+}
+
+
+
+
+//返回当前最大借阅次数。如果当前无borrowtime文件存在，会自动新建borrowtime文件并设定数量为5，返回5
+int FileCheckBorrowTime(void)
+{
+    int borrow_time;
+    FILE* fp_borrow_time = fopen("borrowtime", "r");
+
+    if (fp_borrow_time == NULL) //borrowtime文件不存在
+    {
+        fp_borrow_time = fopen("borrowtime", "w");
+        fprintf(fp_borrow_time, "5");
+
+        fclose(fp_borrow_time);
+
+        return 5;
+    }
+
+    //borrowtime文件存在
+    fscanf(fp_borrow_time, "%d", &borrow_time);
+
+    fclose(fp_borrow_time);
+
+    return borrow_time;
+}
+
+
+
+
+//写入当前借阅天数
+void FileWriteBorrowDay(int borrow_day)
+{
+    FILE* fp_borrow_day = fopen("borrowday", "w");
+
+    fprintf(fp_borrow_day, "%d", borrow_day);
+
+    fclose(fp_borrow_day);
+}
+
+
+
+
+//写入当前最大借阅次数
+void FileWriteBorrowTime(int borrow_time)
+{
+    FILE* fp_borrow_time = fopen("borrowtime", "w");
+
+    fprintf(fp_borrow_time, "%d", borrow_time);
+
+    fclose(fp_borrow_time);
 }
 
 
@@ -77,7 +167,7 @@ int FileUpdateInfo(void)
 
 
 //检测用户库文件状态。若存在，返回1；若不存在，自动新建用户库文件，返回0
-int FileCheckUser(void)
+void FileCheckUser(void)
 {
     FILE* fp_user = fopen("user", "rb");
 

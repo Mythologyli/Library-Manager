@@ -71,7 +71,7 @@ void Display(void);
 //键盘回调函数
 void KeyboardEventProcess(int key, int event)
 {
-	uiGetKeyboard(key,event);
+	uiGetKeyboard(key, event);
 	Display();
 }
 
@@ -79,7 +79,7 @@ void KeyboardEventProcess(int key, int event)
 //鼠标回调函数
 void MouseEventProcess(int x, int y, int button, int event)
 {
-	uiGetMouse(x,y,button,event); 
+	uiGetMouse(x, y, button, event);
 	Display(); 
 }
 
@@ -87,7 +87,7 @@ void MouseEventProcess(int x, int y, int button, int event)
 //字符回调函数
 void CharEventProcess(char ch)
 {
-	uiGetChar(ch); 
+	uiGetChar(ch);
 	Display();
 }
 
@@ -97,7 +97,7 @@ void CharEventProcess(char ch)
 //主函数
 void Main() 
 {
-	SetWindowTitle("Library Manager"); //设置程序名称
+	SetWindowTitle("Library Manager v1.2 by GHL-Group"); //设置程序名称
 	
     InitGraphics(); //初始化图形界面
 
@@ -137,8 +137,8 @@ void Main()
 
 
 	//获得当前借阅设置
-	max_borrow_time = FileCheckBorrowTime();
 	borrow_day = FileCheckBorrowDay();
+	max_borrow_time = FileCheckBorrowTime();
 }
 
 

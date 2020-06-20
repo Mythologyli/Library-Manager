@@ -23,9 +23,13 @@
 int IsLeap(struct Date date)
 {
 	if ((date.year % 4 == 0 && date.year % 100 != 0) || date.year % 400 == 0)//判断是否为闰年
+	{
 		return 1;
+	}
 	else
+	{
 		return 0;
+	}
 }
 
 

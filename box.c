@@ -1531,10 +1531,33 @@ void DrawVersionBox(void)
 	double dx = 1.8;
 	double dy = GetFontHeight() * 2.0;
 
-	drawLabel(x, y, "Library Manager v1.0");
-	drawLabel(x, y - dy, "Copyright(C)2020 XXX-Group");
+	drawLabel(x, y, "Library Manager v1.2");
+	drawLabel(x, y - dy, "Copyright(C)2020 GHL-Group");
 
 	if (button(GenUIID(0), x + w / 4, y - dy * 3, w / 2, h, "OK"))
+	{
+		SetBox(BOX_NO);
+	}
+}
+
+
+
+
+//显示帮助信息
+void DrawHelpBox(void)
+{
+	double x = 3.0;
+	double y = winheight - GetFontHeight() * 10;
+	double w = 1.5;
+	double h = GetFontHeight() * 1.5;
+	double dx = 1.8;
+	double dy = GetFontHeight() * 2.0;
+
+	drawLabel(x, y, "LManager is a simple library manage system.");
+	drawLabel(x, y - dy, "The default database is book1 and borrow1.");
+	drawLabel(x, y - dy * 2, "You can find detailed usage in our report.");
+
+	if (button(GenUIID(0), x + w / 2, y - dy * 4, w / 2, h, "OK"))
 	{
 		SetBox(BOX_NO);
 	}
@@ -1714,5 +1737,6 @@ void DrawBox(void)
 	case SET_BORROW_DAY: DrawSetBorrowDay(); break;
 	case SET_BORROW_TIME: DrawSetMaxBorrowTime(); break;
 	case VERSION: DrawVersionBox(); break;
+	case HELP: DrawHelpBox();
 	}
 }

@@ -13,6 +13,7 @@
 #ifndef __MESSAGE_H__
 #define __MESSAGE_H__
 
+
 //控制显示内容的宏定义
 #define MESSAGE_NO 0
 #define MESSAGE_YES 1

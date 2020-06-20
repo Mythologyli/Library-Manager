@@ -14,8 +14,6 @@
 #define __FUZZYSEARCH_H__
 
 
-
-
 //在链表中对字符串进行模糊搜索，返回一个整形数组，存放符合搜索条件的结点的id序列
 int* FuzzySearchNodeString(void* Node, int node_name, int string_name, char* string_value, int search_mode);
 
